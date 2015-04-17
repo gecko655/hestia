@@ -39,11 +39,11 @@ public class HestiaReply extends AbstractCron {
             for(Status reply : replies){
                 if(isOutOfDate(reply, lastStatus))
                     break;
-                //Relationship relation = twitter.friendsFollowers().showFriendship(twitter.getId(), reply.getUser().getId());
-                
-                //if(!relation.isSourceFollowingTarget()){
-                    //followBack(reply);
-                //}else 
+                Relationship relation = twitter.friendsFollowers().showFriendship(twitter.getId(), reply.getUser().getId());
+                if(!relation.isSourceFollowingTarget()){
+                    twitter.createFriendship(reply.getUser().getId());
+                }
+
                 if(whoPattern.matcher(reply.getText()).find()){
                     // put latest image URL to black-list
                     who(reply);    
@@ -70,17 +70,6 @@ public class HestiaReply extends AbstractCron {
             return true;
         }
         return false;
-    }
-
-    private void followBack(Status reply) throws TwitterException {
-        twitter.createFriendship(reply.getUser().getId());
-        String userName = reply.getUser().getName();
-        if(!keishouPattern.matcher(userName).find()){
-            userName = userName + "くん";
-        }
-        StatusUpdate update= new StatusUpdate("@"+reply.getUser().getScreenName()+" もしかして、あなたが"+userName+"？");
-        update.setInReplyToStatusId(reply.getId());
-        twitter.updateStatus(update);
     }
 
     private void who(Status reply) {
