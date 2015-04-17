@@ -1,4 +1,4 @@
-package jp.gecko655.bot.fujimiya;
+package jp.gecko655.bot.hestia;
 
 import jp.gecko655.bot.AbstractCron;
 import twitter4j.PagableResponseList;

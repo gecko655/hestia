@@ -1,32 +1,19 @@
-fujimiya_heroku
+hestia_heroku
 ===========
 
-## 「わ、私... 月曜日には記憶がリセットされちゃうの...。」
-
 Heroku上で動作するTwitter Botの制御プログラムです。
-<https://twitter.com/fujimiya_monday> を動かしています。
+<https://twitter.com/hestia_bluestrap> を動かしています。
+<https://github.com/gecko655/fujimiya_heroku> のダンまち移植版です
 
 ### 主な機能
 
-すべてのbot機能は、jp.gecko655.fujimiya.botの下のpackageにあります。
-
-- fujimiyaBot
- - google画像検索で「藤宮さん」を検索し、ランダムに画像をツイート
-- FujimiyaReply
- - フォロー外からリプライを受け取ると、リプライの送信主をフォローする
- - フォロー内からリプライを受け取ると、google画像検索で「藤宮さん」を検索し、ランダムに画像をリプライする
- - フォロー内から「違う」などのリプライを受け取ると、リプライ先のツイートを削除して、そのツイートに含まれる画像を今後つぶやかないようにする
-- FujimiyaRemove
- - 月曜日の朝にフォロワーを全員リムーブし、友達のことを忘れる
-- FujimiyaLunch
- - お昼になると、玉子焼きに関係する画像（？）をランダムにツイートする。
-
+気が向いたら書く
 
 
 > なお、TwitterAPIのconsumerKeyなどを別ファイルで保存しているため、
 このリポジトリをクローンしてもそのままでは動きません。
 
-Special Thanks: https://twitter.com/nyoro_331/status/475542674838007808
+Special Thanks: https://twitter.com/fat_daruuuuma/status/588912123931185152
 
 なにかあれば[@gecko655](http://twitter.com/gecko655 "")まで。
 

@@ -1,4 +1,4 @@
-package jp.gecko655.bot.fujimiya;
+package jp.gecko655.bot.hestia;
 
 
 import java.text.DateFormat;
@@ -15,13 +15,13 @@ import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.TwitterException;
 
-public class FujimiyaReply extends AbstractCron {
+public class HestiaReply extends AbstractCron {
     
     static final DateFormat format = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
     private static final Pattern keishouPattern = Pattern.compile("(くん|さん|君|ちゃん)$");
     private static final Pattern whoPattern = Pattern.compile("( 誰$| だれ$|誰[^だで]|だれ[^だで]|誰だ[^と]?|だれだ[^と]?| 違う| ちがう)");
 
-    public FujimiyaReply() {
+    public HestiaReply() {
         format.setTimeZone(TimeZone.getDefault());
     }
 
@@ -39,22 +39,23 @@ public class FujimiyaReply extends AbstractCron {
             for(Status reply : replies){
                 if(isOutOfDate(reply, lastStatus))
                     break;
-                Relationship relation = twitter.friendsFollowers().showFriendship(twitter.getId(), reply.getUser().getId());
+                //Relationship relation = twitter.friendsFollowers().showFriendship(twitter.getId(), reply.getUser().getId());
                 
-                if(!relation.isSourceFollowingTarget()){
-                    followBack(reply);
-                }else if(whoPattern.matcher(reply.getText()).find()){
+                //if(!relation.isSourceFollowingTarget()){
+                    //followBack(reply);
+                //}else 
+                if(whoPattern.matcher(reply.getText()).find()){
                     // put latest image URL to black-list
                     who(reply);    
                 }else{
                     //auto reply (when fujimiya-san follows the replier)
                     StatusUpdate update= new StatusUpdate("@"+reply.getUser().getScreenName()+" ");
                     update.setInReplyToStatusId(reply.getId());
-                    if(((int) (Math.random()*10))==1){//10%
-                        updateStatusWithMedia(update, "山岸沙希 かわいい 一週間フレンズ。", 100);
-                    }else{
-                        updateStatusWithMedia(update, "藤宮香織 かわいい 一週間フレンズ。",100);
-                    }
+                    //if(((int) (Math.random()*10))==1){//10%
+                    updateStatusWithMedia(update, "ヘスティア ダンジョンに出会いを求めるのは間違っているだろうか",100);
+                    //}else{
+                        //updateStatusWithMedia(update, "藤宮香織 かわいい 一週間フレンズ。",100);
+                    //}
                 }
             }
         } catch (TwitterException e) {

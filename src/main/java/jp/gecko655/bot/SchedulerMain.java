@@ -3,16 +3,9 @@ package jp.gecko655.bot;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.repeatSecondlyForever;
 import static org.quartz.TriggerBuilder.newTrigger;
+import jp.gecko655.bot.hestia.HestiaBot;
+import jp.gecko655.bot.hestia.HestiaReply;
 
-import java.util.TimeZone;
-
-import jp.gecko655.bot.fujimiya.FujimiyaBot;
-import jp.gecko655.bot.fujimiya.FujimiyaLunch;
-import jp.gecko655.bot.fujimiya.FujimiyaRemove;
-import jp.gecko655.bot.fujimiya.FujimiyaReply;
-
-import org.quartz.CronScheduleBuilder;
-import org.quartz.DateBuilder;
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.ScheduleBuilder;
@@ -28,18 +21,8 @@ public class SchedulerMain {
         scheduler = StdSchedulerFactory.getDefaultScheduler();
 
         scheduler.start();
-        setSchedule(FujimiyaReply.class, repeatSecondlyForever(60*2));
-        setSchedule(FujimiyaBot.class, repeatSecondlyForever(60*60*4));
-        setSchedule(
-                FujimiyaLunch.class, 
-                CronScheduleBuilder
-                    .dailyAtHourAndMinute(12, 25)
-                    .inTimeZone(TimeZone.getTimeZone("JST")));
-        setSchedule(
-                FujimiyaRemove.class, 
-                CronScheduleBuilder
-                    .atHourAndMinuteOnGivenDaysOfWeek(9, 0, DateBuilder.MONDAY)
-                    .inTimeZone(TimeZone.getTimeZone("JST")));
+        setSchedule(HestiaReply.class, repeatSecondlyForever(60*2));
+        setSchedule(HestiaBot.class, repeatSecondlyForever(60*60*4));
 
     }
     private static void setSchedule(Class<? extends Job> classForExecute, ScheduleBuilder<? extends Trigger> schedule) throws SchedulerException {
