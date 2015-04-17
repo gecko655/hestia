@@ -2,7 +2,7 @@ hestia_heroku
 ===========
 
 Heroku上で動作するTwitter Botの制御プログラムです。
-<https://twitter.com/hestia_bluestrap> を動かしています。
+<https://twitter.com/hestiabluestrap> を動かしています。
 <https://github.com/gecko655/fujimiya_monday> のダンまち移植版です。
 
 ### 主な機能
