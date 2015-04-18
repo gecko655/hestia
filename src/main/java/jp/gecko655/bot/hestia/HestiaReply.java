@@ -52,7 +52,7 @@ public class HestiaReply extends AbstractCron {
                     StatusUpdate update= new StatusUpdate("@"+reply.getUser().getScreenName()+" ");
                     update.setInReplyToStatusId(reply.getId());
                     //if(((int) (Math.random()*10))==1){//10%
-                    updateStatusWithMedia(update, "ヘスティア ダンジョンに出会いを求めるのは間違っているだろうか",100);
+                    updateStatusWithMedia(update, "ヘスティア　ダンまち おっぱい 可愛い",100);
                     //}else{
                         //updateStatusWithMedia(update, "藤宮香織 かわいい 一週間フレンズ。",100);
                     //}
