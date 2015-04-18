@@ -118,7 +118,7 @@ public abstract class AbstractCron implements Job{
         list.setKey(customSearchKey);
         list.setSearchType("image");
         list.setNum((long)pageSize);
-        list.setImgSize("huge").setImgSize("large").setImgSize("medium").setImgSize("xlarge").setImgSize("xxlarge");
+        //list.setImgSize("huge").setImgSize("large").setImgSize("medium").setImgSize("xlarge").setImgSize("xxlarge");
         
         long rand = (long)(Math.random()*maxRankOfResult+1);
         list.setStart(rand);
