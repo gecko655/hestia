@@ -19,7 +19,6 @@ import twitter4j.TwitterException;
 public class HestiaReply extends AbstractCron {
     
     static final DateFormat format = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL);
-    private static final Pattern keishouPattern = Pattern.compile("(くん|さん|君|ちゃん)$");
     private static final Pattern whoPattern = Pattern.compile("( 誰$| だれ$|誰[^だで]|だれ[^だで]|誰だ[^と]?|だれだ[^と]?| 違う| ちがう)");
 
     public HestiaReply() {
@@ -33,7 +32,7 @@ public class HestiaReply extends AbstractCron {
             List<Status> replies = twitter.getMentionsTimeline((new Paging()).count(20))
                     .stream().filter(reply -> !isOutOfDate(reply, lastStatus)).collect(Collectors.toList());
             if(replies.isEmpty()){
-                logger.log(Level.INFO, "Not yet replied. Stop.");
+                logger.log(Level.FINE, "Not yet replied. Stop.");
                 return;
             }
             DBConnection.setLastStatus(replies.get(0));
@@ -52,7 +51,7 @@ public class HestiaReply extends AbstractCron {
                     // put latest image URL to black-list
                     who(reply);    
                 }else{
-                    //auto reply (when fujimiya-san follows the replier)
+                    //auto reply (when hestia-sama follows the replier)
                     StatusUpdate update= new StatusUpdate("@"+reply.getUser().getScreenName()+" ");
                     update.setInReplyToStatusId(reply.getId());
                     //if(((int) (Math.random()*10))==1){//10%
